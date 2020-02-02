@@ -3,7 +3,10 @@ pipeline {
     stages {
         stage('Predeploy') {
             steps {
-                sh 'echo "Test"'
+                sh 'apt-get update'
+                sh 'apt-get install install apt-transport-https'
+                sh 'apt-get update'
+                sh 'apt-get install dotnet-sdk-3.1'
             }
         }
         stage('Build') {
