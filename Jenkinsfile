@@ -1,12 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage('Predeploy') {
+        stage('Checkout') {
             steps {
-                sh 'apt-get update'
-                sh 'apt-get install install apt-transport-https'
-                sh 'apt-get update'
-                sh 'apt-get install dotnet-sdk-3.1'
+                git credentialsId: 'aawadall', url: 'https://github.com/aawadall/GrpcEngine.git', branch: 'master'
+            }
+        }
+        
+        stage('Restore Packages') {
+            steps {
+                bat "dotnet restore"
             }
         }
         stage('Build') {
