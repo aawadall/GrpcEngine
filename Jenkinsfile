@@ -9,7 +9,7 @@ pipeline {
         
         stage('Restore Packages') {
             steps {
-                bat "dotnet restore"
+                sh "dotnet restore"
             }
         }
         stage('Build') {
